@@ -1,4 +1,3 @@
-# pylint: disable=C0321,C0103,C0301,E1305,E1121,C0302,C0330,C0111,W0613,W0611,R1705
 # -*- coding: utf-8 -*-
 """
 
@@ -22,7 +21,7 @@ print("version", version)
 ##### Requirements ###################################################################
 #with open('install/reqs_image.cmd') as fp:
 #    install_requires = fp.read()
-install_requires = ['pyyaml', 'python-box', 'fire', 'utilmy' ]
+install_requires = ['pyyaml', 'python-box', 'fire', 'src' ]
 
 
 
@@ -59,9 +58,9 @@ long_description = f""" ``` """ + ss1 +  """```"""
 
 
 ### Packages  ########################################################
-packages = ["utilmy"] + ["utilmy." + p for p in find_packages("utilmy")]
-#packages = ["utilmy"] + ["utilmy.viz" + p for p in find_packages("utilmy.viz")]
-packages = ["utilmy"] + [ p for p in  find_packages(include=['utilmy.*']) ]
+packages = ["src"] + ["src." + p for p in find_packages("src")]
+#packages = ["src"] + ["src.viz" + p for p in find_packages("src.viz")]
+packages = ["src"] + [ p for p in  find_packages(include=['src.*']) ]
 print(packages)
 
 
@@ -72,23 +71,8 @@ scripts = [     ]
 ### CLI Scripts  ###################################################   
 entry_points={ 'console_scripts': [
 
-    'docs      = utilmy.docs.cli:run_cli',
+    #'skchat      = src.cli:run_cli',
 
-    'templates = utilmy.templates.cli:run_cli',
-
-    #### generic
-    'utilmy = utilmy.cli:run_cli_utilmy',
-
-
-    #### generic for All code
-    'utilmy2 = utilmy.cli:run_all_utilmy2',
-
-    ###  sspark
-    'sspark = utilmy.sspark.src.util_spark:run_cli_sspark',
-
-
-    ###  image
-    'image = utilmy.images.util_image:run_cli',
 
  ] }
 
@@ -97,7 +81,7 @@ entry_points={ 'console_scripts': [
 
 ##################################################################   
 setup(
-    name="utilmy",
+    name="src",
     description="utils",
     keywords='utils',
     
@@ -174,19 +158,19 @@ def os_bash_append(cmd):
     return False
 
 
-#### Add environemment variables  utilmy path
+#### Add environemment variables  src path
 try :
-    repopath = os.path.dirname( os.path.abspath(__file__).replace("\\", "/") )  + "/utilmy/"
+    repopath = os.path.dirname( os.path.abspath(__file__).replace("\\", "/") )  + "/src/"
     if 'win' in sys.platform :
-        os.system(f" set  utilmy='{repopath}/' ")  ### Any new session
-        os.system(f" setx utilmy='{repopath}/' ")  ### Current session
+        os.system(f" set  src='{repopath}/' ")  ### Any new session
+        os.system(f" setx src='{repopath}/' ")  ### Current session
 
     elif 'linux' in sys.platform :
-        os_bash_append(f"""export utilmy={repopath}/    """)
-        os.system(f" export utilmy={repopath}/ ")
+        os_bash_append(f"""export src={repopath}/    """)
+        os.system(f" export src={repopath}/ ")
         print(' source  ~/.bashrc  ')
 
-    print(" $utilmy  can be used as shortcut of the package library path for Command Line Usage")    
+    print(" $src  can be used as shortcut of the package library path for Command Line Usage")    
 
 except :
     pass
@@ -246,7 +230,7 @@ def os_cmd_to_bashrc(cmd):
 
 
 """
-alias sspark='python /workspace/myutil/utilmy/sspark/src/util_spark.py'
+alias sspark='python /workspace/myutil/src/sspark/src/util_spark.py'
 
 
 from setuptools import setup, find_packages
