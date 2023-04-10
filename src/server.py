@@ -25,8 +25,7 @@ from skpy import SkypeEventLoop
 global user1, pass1, bingchat, sk, app
 user1= os.environ.get('skype_user', 'user')
 pass1= os.environ.get('skype_pass', 'pass')
-bingchat=os.environ.get('skype_bingchat', 'bing' )
-
+basid= os.environ.get('skype_chatid', 'someid')
 
 
 ################################################################################
@@ -76,7 +75,7 @@ def get_messages_chatid(chatid=None):
     """
     """
     try:
-        chatid =bingid if chatid is None else chatid  
+        chatid = baseid if chatid is None else chatid  
         chat0= sk.chats[chatid]
         messages = []
         # Get recent chats and their messages
