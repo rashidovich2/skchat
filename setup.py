@@ -53,14 +53,14 @@ Hash:
 """
 ### git hash : https://github.com/arita37/myutil/tree/{githash}
 
-long_description = f""" ``` """ + ss1 +  """```"""
+long_description = f""" ``` {ss1}```"""
 
 
 
 ### Packages  ########################################################
-packages = ["src"] + ["src." + p for p in find_packages("src")]
+packages = ["src"] + [f"src.{p}" for p in find_packages("src")]
 #packages = ["src"] + ["src.viz" + p for p in find_packages("src.viz")]
-packages = ["src"] + [ p for p in  find_packages(include=['src.*']) ]
+packages = ["src"] + list(find_packages(include=['src.*']))
 print(packages)
 
 
@@ -84,11 +84,11 @@ setup(
     name="src",
     description="utils",
     keywords='utils',
-    
+
     author="Nono",    
     install_requires=install_requires,
     python_requires='>=3.7.5',
-    
+
     packages=packages,
 
     include_package_data=True,
@@ -98,7 +98,7 @@ setup(
        '': ['*','*/*','*/*/*','*/*/*/*']
     },
 
-   
+
     ### Versioning
     version=version,
     #cmdclass=cmdclass,
@@ -106,7 +106,7 @@ setup(
 
     #### CLI
     scripts = scripts,
-  
+
     ### CLI pyton
     entry_points= entry_points,
 
